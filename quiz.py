@@ -14,13 +14,21 @@ terminal_cards = [
     ("Which command moves or renames a file?", "mv"),
 ]
 
-def print_random_card():
-    """Print a random flashcard from both decks."""
-    all_cards = git_cards + terminal_cards
-    question, answer = random.choice(all_cards)
-    print(f"Q: {question}")
-    print(f"A: {answer}")
+def print_random_card(topic=None):
+    """Print a random flashcard with its label from the chosen topic or both."""
+    if topic == "git":
+        deck = [("[GIT]", q, a) for q, a in git_cards]
+    elif topic == "terminal":
+        deck = [("[TERMINAL]", q, a) for q, a in terminal_cards]
+    else:
+        deck = [("[GIT]", q, a) for q, a in git_cards] + [("[TERMINAL]", q, a) for q, a in terminal_cards]
+    
+    label, question, answer = random.choice(deck)
+    print(f"{label} Q: {question}")
+    print(f"{label} A: {answer}")
 
 if __name__ == "__main__":
     print("Flashcards for the course")
     print_random_card()
+    print_random_card(topic="git")
+    print_random_card(topic="terminal")
