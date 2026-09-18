@@ -7,12 +7,13 @@ git_cards = [
     ("Which command shows what changed but is not staged yet?", "git diff"),
 ]
 
-def print_random_card():
-    """Print a random flashcard: the question, then the answer."""
-    question, answer = random.choice(git_cards)
-    print(f"Q: {question}")
-    print(f"A: {answer}")
+def print_random_card(topic="git"):
+    """Print a random flashcard with a topic label."""
+    if topic == "git":
+        question, answer = random.choice(git_cards)
+        print(f"[GIT] Q: {question}")
+        print(f"[GIT] A: {answer}")
 
 if __name__ == "__main__":
     print("Flashcards for the course")
-    print_random_card()
+    print_random_card(topic="git")
